@@ -17,3 +17,23 @@ function mostrarMenu() {
   }
 }
 
+function registrarHabitacion() {
+  let numero = prompt("Numero de habitacion: ");
+  let tipo = prompt("Tipo (Sencilla / Doble / Suite):");
+  let precio = prompt("Precio por noche:");
+  console.log("Validando información de la habitación");
+
+  setTimeout(function () {
+    let habitacion = {
+      numero: numero,
+      tipo: tipo,
+      precioNoche: precio,
+      estado: "Libre",
+      huesped: "",
+    };
+
+    habitaciones.push(habitacion);
+    console.log("Habitación registrada correctamente.");
+    mostrarMenu();
+  }, 2000);
+}
