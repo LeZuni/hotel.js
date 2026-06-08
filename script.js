@@ -37,3 +37,4 @@ function registrarHabitacion() {
     mostrarMenu();
   }, 2000);
 }
+
