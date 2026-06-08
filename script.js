@@ -38,3 +38,76 @@ function registrarHabitacion() {
   }, 2000);
 }
 
+function listarHabitaciones() {
+  if (habitaciones.length === 0) {
+    console.log("No hay habitaciones registradas.");
+  } else {
+    for (let i = 0; i < habitaciones.length; i++) {
+      let habitacion = habitaciones[i];
+      console.log(
+        `Habitación ${habitacion.numero} - Tipo: ${habitacion.tipo} - Precio: Q${habitacion.precioNoche} - Estado: ${habitacion.estado}`,
+      );
+    }
+  }
+  mostrarMenu();
+}
+
+function buscarHabitacion() {
+  let numero = prompt("Número de habitación a buscar:");
+  console.log("Buscando habitación...");
+  setTimeout(() => {
+    let habitacion = habitaciones.find((h) => h.numero === numero);
+    if (habitacion) {
+      console.log(
+        `Habitación ${habitacion.numero} - Tipo: ${habitacion.tipo} - Precio: Q${habitacion.precioNoche} - Estado: ${habitacion.estado}`,
+      );
+    } else {
+      console.log("Habitación no encontrada.");
+    }
+    mostrarMenu();
+  }, 2000);
+}
+
+function cambiarEstado() {
+  var numero = prompt("Número de habitación:");
+
+  console.log("Esperando al personal del hotel...");
+
+  setTimeout(function () {
+    var habitacion = habitaciones.find(function (h) {
+      return h.numero === numero;
+    });
+
+    if (!habitacion) {
+      console.log("Habitación no encontrada.");
+      mostrarMenu();
+      return;
+    }
+
+    var nuevoEstado = prompt("Nuevo estado (Libre / Ocupada / Limpieza):");
+    habitacion.estado = nuevoEstado;
+
+    if (nuevoEstado === "Ocupada") {
+      habitacion.huesped = prompt("Nombre del huésped:");
+    } else if (nuevoEstado === "Libre") {
+      habitacion.huesped = "";
+    }
+
+    console.log("Estado actualizado correctamente.");
+    mostrarMenu();
+  }, 3000);
+}
+
+function eliminarHabitacion() {
+  let numero = prompt("Número de habitación a eliminar:");
+  let index = habitaciones.findIndex((h) => h.numero === numero);
+  if (index !== -1) {
+    habitaciones.splice(index, 1);
+    console.log("Habitación eliminada correctamente.");
+  } else {
+    console.log("Habitación no encontrada.");
+  }
+  mostrarMenu();
+}
+
+mostrarMenu();
